@@ -2,7 +2,8 @@
 $(document).ready(function() {
 
 	//prepopulate with a few to-dos
-	//include a unique ID
+	//includes a unique ID
+	//if the data were actually stored in a database this id would come from the db
  	todos = [ 
 	 	{
 	 		name: 'Do homework 4', 
@@ -30,7 +31,6 @@ $(document).ready(function() {
 
  	//on click of delete link, remove todo from list
  	$('#todos').on('click', '.todo a.delete', function() {
- 		console.log('click')
  		deleteTodo($(this).parent().attr('id'));
  		return false;
  	});
@@ -58,8 +58,8 @@ function createTodo(title) {
 	drawTodos();
 }
 
+//remove a todo from the list
 function deleteTodo(id) {
-	console.log(id);
 	$.each(todos, function(index, item) {
 		if (item.id == id) {
 			todos.splice(index, 1);
@@ -68,6 +68,7 @@ function deleteTodo(id) {
 	drawTodos();
 }
 
+//repopulate the todos div based on the current list
 function drawTodos() {
 	$('#todos').empty();
 	if (todos.length > 0) {
